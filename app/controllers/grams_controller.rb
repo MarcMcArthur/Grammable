@@ -3,6 +3,13 @@ class GramsController < ApplicationController
   def index 
   end
 
+  def show
+    @gram = Gram.find_by_id(params[:id])
+    if @gram.blank?
+      render text: 'Not Found :(', status: :not_found
+    end
+  end
+
   def new
     @gram = Gram.new
   end
@@ -12,8 +19,8 @@ class GramsController < ApplicationController
     if @gram.valid?
       redirect_to root_path
     else
-    render :new, status: :unprocessable_entity
-  end
+      render :new, status: :unprocessable_entity
+    end
   end
 
   private
