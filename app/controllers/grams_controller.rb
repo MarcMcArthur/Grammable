@@ -57,8 +57,4 @@ class GramsController < ApplicationController
     params.require(:gram).permit(:message, :picture)
   end
 
-  def render_not_found(status=:not_found)
-    render text: "{satus.to_s.titlesize} :(", status: status
-  end
-
 end
