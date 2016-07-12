@@ -1,3 +1,10 @@
+if Rails.env.test? or Rails.env.cucumber?
+  CarrierWave.configure do |config|
+    config.storage = :file
+    config.enable_processing = false
+  end
+end
+
 CarrierWave.configure do |config|
   config.fog_credentials = {
     :provider => 'AWS',
@@ -6,10 +13,4 @@ CarrierWave.configure do |config|
   }
 
   config.fog_directory = ENV["AWS_BUCKET"]
-
-
-  if Rails.env.test?
-    config.storage = :file
-    config.enable_processing = false
-  end
 end
