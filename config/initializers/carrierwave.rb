@@ -7,4 +7,9 @@ CarrierWave.configure do |config|
 
   config.fog_directory = ENV["AWS_BUCKET"]
 
+
+  if Rails.env.test?
+    config.storage = :file
+    config.enable_processing = false
+  end
 end
